@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{955CAD67-92A8-49CC-A87D-3B12F7832B04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HIPHttpApi</RootNamespace>
+    <AssemblyName>HIP.Http.Api</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Services\Common\Definitions.cs" />
+    <Compile Include="Implementation\HIPApi.cs" />
+    <Compile Include="Implementation\HttpClient.cs" />
+    <Compile Include="Implementation\HttpClientConfiguration.cs" />
+    <Compile Include="Interfaces\IApi.cs" />
+    <Compile Include="Interfaces\IHttpClient.cs" />
+    <Compile Include="Interfaces\IHttpClientConfiguration.cs" />
+    <Compile Include="Services\Common\Error\ErrorResponse.cs" />
+    <Compile Include="Services\Common\Error\Json\ErrorResponseJson.cs" />
+    <Compile Include="Services\Common\Utils.cs" />
+    <Compile Include="Services\Interfaces\IEventArgs.cs" />
+    <Compile Include="Services\Logging\Common\LoggingDefinitions.cs" />
+    <Compile Include="Services\Logging\Reponse\Entity\LoggingEventEntity.cs" />
+    <Compile Include="Services\Logging\Reponse\LoggingCapsResponse.cs" />
+    <Compile Include="Services\Logging\Reponse\LoggingEventArgs.cs" />
+    <Compile Include="Services\Logging\Interfaces\ILoggingService.cs" />
+    <Compile Include="Services\Logging\Interfaces\ILoggingResponse.cs" />
+    <Compile Include="Services\Logging\Json\CapsResponseJson.cs" />
+    <Compile Include="Services\Logging\Json\UnsubscribeJson.cs" />
+    <Compile Include="Services\Logging\LoggingService.cs" />
+    <Compile Include="Services\Logging\Json\PullResponseJson.cs" />
+    <Compile Include="Services\Logging\Json\SubscribeJson.cs" />
+    <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Logging\Reponse\LoggingPullResponse.cs" />
+    <Compile Include="Services\Logging\Reponse\LoggingSubscribeResponse.cs" />
+    <Compile Include="Services\Logging\Reponse\LoggingUnsubscribeResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Audio\" />
+    <Folder Include="Services\Camera\" />
+    <Folder Include="Services\Display\" />
+    <Folder Include="Services\Email\" />
+    <Folder Include="Services\IO\" />
+    <Folder Include="Services\PhoneCall\" />
+    <Folder Include="Services\Switch\" />
+    <Folder Include="Services\System\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
