@@ -1,0 +1,7 @@
+bin/
+Obj/
+release/
+debug/
+*.suo
+TestResults/
+packages
