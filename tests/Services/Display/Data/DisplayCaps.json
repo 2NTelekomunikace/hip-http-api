@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "result": {
+    "displays": [
+      {
+        "display": "internal",
+        "resolution": {
+          "width": 320,
+          "height": 240
+        }
+      }
+    ]
+  }
+}

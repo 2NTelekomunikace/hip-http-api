@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "result": {
+    "events": [
+      "DeviceState",
+      "AudioLoopTest",
+      "MotionDetected",
+      "NoiseDetected",
+      "KeyPressed",
+      "KeyReleased",
+      "CodeEntered",
+      "CardEntered",
+      "InputChanged",
+      "OutputChanged",
+	  "SwitchStateChanged",
+      "CallStateChanged",
+      "RegistrationStateChanged",
+      "TamperSwitchActivated",
+      "UnauthorizedDoorOpen",
+      "DoorOpenTooLong",
+      "LoginBlocked"
+    ]
+  }
+}

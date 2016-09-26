@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DeviceDatabase Version="7">
+  <Network>
+    <DhcpEnabled>1</DhcpEnabled>
+    <Hostname>HeliosIP-54-0349-1996 </Hostname>
+    <IpAddress>192.168.1.100</IpAddress>
+    <NetworkMask>255.255.255.0</NetworkMask>
+    <DefaultGateway>192.168.1.1</DefaultGateway>
+    <PrimaryDnsServer></PrimaryDnsServer>
+    <SecondaryDnsServer></SecondaryDnsServer>
+    <PhyMode>15</PhyMode>
+    <Eap>
+      <Enabled>0</Enabled>
+      <Identity></Identity>
+      <Md5>
+        <Enabled>0</Enabled>
+        <Password></Password>
+      </Md5>
+      <Tls>
+        <Enabled>0</Enabled>
+        <CACert>0</CACert>
+        <CertPK>0</CertPK>
+      </Tls>
+    </Eap>
+  </Network>
+</DeviceDatabase>

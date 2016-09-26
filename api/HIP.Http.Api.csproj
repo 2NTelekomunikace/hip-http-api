@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\Audio\AudioService.cs" />
+    <Compile Include="Services\Audio\Common\AudioDefinitions.cs" />
+    <Compile Include="Services\Audio\Interfaces\IAudioService.cs" />
+    <Compile Include="Services\Audio\Json\AudioTestResponseJson.cs" />
+    <Compile Include="Services\Audio\Response\AudioTestResponse.cs" />
+    <Compile Include="Services\Camera\CameraService.cs" />
+    <Compile Include="Services\Camera\Common\CameraDefinitions.cs" />
+    <Compile Include="Services\Camera\Interfaces\ICameraService.cs" />
+    <Compile Include="Services\Camera\Json\CameraCapsResponseJson.cs" />
+    <Compile Include="Services\Camera\Response\CameraCapsResponse.cs" />
+    <Compile Include="Services\Camera\Response\CameraSnapshotResponse.cs" />
+    <Compile Include="Services\Camera\Response\Entity\JpegResolutionEntity.cs" />
     <Compile Include="Services\Common\Definitions.cs" />
     <Compile Include="Implementation\HIPApi.cs" />
     <Compile Include="Implementation\HttpClient.cs" />
@@ -54,13 +67,38 @@
     <Compile Include="Services\Common\Error\ErrorResponse.cs" />
     <Compile Include="Services\Common\Error\Json\ErrorResponseJson.cs" />
     <Compile Include="Services\Common\Utils.cs" />
+    <Compile Include="Services\Common\Version.cs" />
+    <Compile Include="Services\Display\Common\DisplayDefinitions.cs" />
+    <Compile Include="Services\Display\DisplayService.cs" />
+    <Compile Include="Services\Display\Interfaces\IDisplayService.cs" />
+    <Compile Include="Services\Display\Json\DisplayCapsResponseJson.cs" />
+    <Compile Include="Services\Display\Json\DisplayImageResponseJson.cs" />
+    <Compile Include="Services\Display\Response\DisplayCapsResponse.cs" />
+    <Compile Include="Services\Display\Response\DisplayImageResponse.cs" />
+    <Compile Include="Services\Display\Response\Entity\DisplayEntity.cs" />
+    <Compile Include="Services\Email\Common\EmailDefinitions.cs" />
+    <Compile Include="Services\Email\EmailService.cs" />
+    <Compile Include="Services\Email\Interfaces\IEmailService.cs" />
+    <Compile Include="Services\Email\Json\EmailSendResponseJson.cs" />
+    <Compile Include="Services\Email\Response\EmailSendResponse.cs" />
     <Compile Include="Services\Interfaces\IEventArgs.cs" />
+    <Compile Include="Services\IO\Common\IODefinitions.cs" />
+    <Compile Include="Services\IO\Interfaces\IIOService.cs" />
+    <Compile Include="Services\IO\IOService.cs" />
+    <Compile Include="Services\IO\Json\IOCapsResponseJson.cs" />
+    <Compile Include="Services\IO\Json\IOCtrlResponseJson.cs" />
+    <Compile Include="Services\IO\Json\IOStatusResponseJson.cs" />
+    <Compile Include="Services\IO\Response\Entity\IOPortEntity.cs" />
+    <Compile Include="Services\IO\Response\Entity\IOPortStatusEntity.cs" />
+    <Compile Include="Services\IO\Response\IOCapsResponse.cs" />
+    <Compile Include="Services\IO\Response\IOCtrlResponse.cs" />
+    <Compile Include="Services\IO\Response\IOStatusResponse.cs" />
     <Compile Include="Services\Logging\Common\LoggingDefinitions.cs" />
     <Compile Include="Services\Logging\Reponse\Entity\LoggingEventEntity.cs" />
     <Compile Include="Services\Logging\Reponse\LoggingCapsResponse.cs" />
     <Compile Include="Services\Logging\Reponse\LoggingEventArgs.cs" />
     <Compile Include="Services\Logging\Interfaces\ILoggingService.cs" />
-    <Compile Include="Services\Logging\Interfaces\ILoggingResponse.cs" />
+    <Compile Include="Services\Interfaces\IResponse.cs" />
     <Compile Include="Services\Logging\Json\CapsResponseJson.cs" />
     <Compile Include="Services\Logging\Json\UnsubscribeJson.cs" />
     <Compile Include="Services\Logging\LoggingService.cs" />
@@ -71,17 +109,58 @@
     <Compile Include="Services\Logging\Reponse\LoggingPullResponse.cs" />
     <Compile Include="Services\Logging\Reponse\LoggingSubscribeResponse.cs" />
     <Compile Include="Services\Logging\Reponse\LoggingUnsubscribeResponse.cs" />
+    <Compile Include="Services\PhoneCall\Common\PhoneCallDefinitions.cs" />
+    <Compile Include="Services\PhoneCall\Interfaces\IPhoneCallService.cs" />
+    <Compile Include="Services\PhoneCall\Json\CallAnswerResponseJson.cs" />
+    <Compile Include="Services\PhoneCall\Json\CallDialResponseJson.cs" />
+    <Compile Include="Services\PhoneCall\Json\CallHangupResponseJson.cs" />
+    <Compile Include="Services\PhoneCall\Json\CallStatusResponseJson.cs" />
+    <Compile Include="Services\PhoneCall\Json\PhoneStatusResponseJson.cs" />
+    <Compile Include="Services\PhoneCall\PhoneCallService.cs" />
+    <Compile Include="Services\PhoneCall\Response\CallAnswerResponse.cs" />
+    <Compile Include="Services\PhoneCall\Response\CallDialResponse.cs" />
+    <Compile Include="Services\PhoneCall\Response\CallHangupResponse.cs" />
+    <Compile Include="Services\PhoneCall\Response\CallStatusResponse.cs" />
+    <Compile Include="Services\PhoneCall\Response\Entity\AccountEntity.cs" />
+    <Compile Include="Services\PhoneCall\Response\Entity\SessionEntity.cs" />
+    <Compile Include="Services\PhoneCall\Response\PhoneStatusResponse.cs" />
+    <Compile Include="Services\Switch\Common\SwitchDefinitions.cs" />
+    <Compile Include="Services\Switch\Interfaces\ISwitchService.cs" />
+    <Compile Include="Services\Switch\Json\SwitchCapsResponseJson.cs" />
+    <Compile Include="Services\Switch\Json\SwitchCtrlResponseJson.cs" />
+    <Compile Include="Services\Switch\Json\SwitchStatusResponseJson.cs" />
+    <Compile Include="Services\Switch\Response\Entity\SwitchEntity.cs" />
+    <Compile Include="Services\Switch\Response\Entity\SwitchStatusEntity.cs" />
+    <Compile Include="Services\Switch\Response\SwitchCapsResponse.cs" />
+    <Compile Include="Services\Switch\Response\SwitchCtrlResponse.cs" />
+    <Compile Include="Services\Switch\Response\SwitchStatusResponse.cs" />
+    <Compile Include="Services\Switch\SwitchService.cs" />
+    <Compile Include="Services\System\Common\SystemDefinitions.cs" />
+    <Compile Include="Services\System\Interfaces\ISystemService.cs" />
+    <Compile Include="Services\System\Json\ConfigFactoryResetResponseJson.cs" />
+    <Compile Include="Services\System\Json\FirmwareApplyResponseJson.cs" />
+    <Compile Include="Services\System\Json\FirmwareResponseJson.cs" />
+    <Compile Include="Services\System\Json\InfoResponseJson.cs" />
+    <Compile Include="Services\System\Json\PcapStopResponseJson.cs" />
+    <Compile Include="Services\System\Json\PcapRestartResponseJson.cs" />
+    <Compile Include="Services\System\Json\RestartResponseJson.cs" />
+    <Compile Include="Services\System\Json\StatusResponseJson.cs" />
+    <Compile Include="Services\System\Json\ConfigUploadResponseJson.cs" />
+    <Compile Include="Services\System\Response\Entity\SystemInfoEntity.cs" />
+    <Compile Include="Services\System\Response\SystemConfigDownloadResponse.cs" />
+    <Compile Include="Services\System\Response\SystemConfigFactoryResetResponse.cs" />
+    <Compile Include="Services\System\Response\SystemPcapResponse.cs" />
+    <Compile Include="Services\System\Response\SystemConfigUploadResponse.cs" />
+    <Compile Include="Services\System\Response\SystemFirmwareApplyResponse.cs" />
+    <Compile Include="Services\System\Response\SystemFirmwareResponse.cs" />
+    <Compile Include="Services\System\Response\SystemInfoResponse.cs" />
+    <Compile Include="Services\System\Response\SystemPcapRestartResponse.cs" />
+    <Compile Include="Services\System\Response\SystemPcapStopResponse.cs" />
+    <Compile Include="Services\System\Response\SystemRestartResponse.cs" />
+    <Compile Include="Services\System\Response\SystemStatusResponse.cs" />
+    <Compile Include="Services\System\SystemService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Audio\" />
-    <Folder Include="Services\Camera\" />
-    <Folder Include="Services\Display\" />
-    <Folder Include="Services\Email\" />
-    <Folder Include="Services\IO\" />
-    <Folder Include="Services\PhoneCall\" />
-    <Folder Include="Services\Switch\" />
-    <Folder Include="Services\System\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

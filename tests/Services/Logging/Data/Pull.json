@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "result": {
+    "events": [
+      {
+        "id": 1,
+        "tzShift": 0,
+        "utcTime": 1437987102,
+        "upTime": 8,
+        "event": "DeviceState",
+        "params": {
+          "state": "startup"
+        }
+      },
+      {
+        "id": 3,
+        "tzShift": 0,
+        "utcTime": 1437987105,
+        "upTime": 11,
+        "event": "RegistrationStateChanged",
+        "params": {
+          "sipAccount": 1,
+          "state": "registered"
+        }
+      }
+    ]
+  }
+}

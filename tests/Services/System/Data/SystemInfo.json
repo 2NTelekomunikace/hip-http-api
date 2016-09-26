@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "result": {
+    "variant": "2N Helios IP Vario",
+    "serialNumber": "08-1860-0035",
+    "hwVersion": "535v1",
+    "swVersion": "2.10.0.19.2",
+    "buildType": "beta",
+    "deviceName": "2N Helios IP Vario"
+  }
+}

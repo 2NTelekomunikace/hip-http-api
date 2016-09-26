@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "result": {
+    "sessions": [
+      {
+        "session": 1,
+        "direction": "outgoing",
+        "state": "ringing"
+      }
+    ]
+  }
+}

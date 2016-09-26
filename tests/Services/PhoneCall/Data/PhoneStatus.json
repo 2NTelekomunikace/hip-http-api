@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "result": {
+    "accounts": [
+      {
+        "account": 1,
+        "sipNumber": "5046",
+        "registered": true,
+        "registerTime": 1418034578
+      },
+      {
+        "account": 2,
+        "sipNumber": "",
+        "registered": false
+      }
+    ]
+  }
+}

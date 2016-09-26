@@ -22,7 +22,7 @@ namespace HIPHttpApi
         {
             try
             {
-                string result = _client.Get(new Uri(LoggingEndPoint.Caps(), UriKind.Relative));
+                string result = _client.Get(new Uri(LoggingEndpoint.Caps(), UriKind.Relative));
                 CapsResponseJson capsResponse = JsonConvert.DeserializeObject<CapsResponseJson>(result);
 
                 IResponse response = null;
@@ -33,8 +33,7 @@ namespace HIPHttpApi
                 }
                 else
                 {
-                    ErrorResponseJson errorResponse = JsonConvert.DeserializeObject<ErrorResponseJson>(result);
-                    response = new ErrorResponse(errorResponse.Error.Code, errorResponse.Error.Param, errorResponse.Error.Description);
+                    response = Utils.ErrorResponse(result);
                 }
 
                 return response;
@@ -49,7 +48,7 @@ namespace HIPHttpApi
         {
             try
             {
-                string result = _client.Get(new Uri(LoggingEndPoint.Pull(id, timeout), UriKind.Relative));
+                string result = _client.Get(new Uri(LoggingEndpoint.Pull(id, timeout), UriKind.Relative));
                 PullResponseJson pullResponse = JsonConvert.DeserializeObject<PullResponseJson>(result);
 
                 IResponse response = null;
@@ -74,8 +73,7 @@ namespace HIPHttpApi
                 }
                 else
                 {
-                    ErrorResponseJson errorResponse = JsonConvert.DeserializeObject<ErrorResponseJson>(result);
-                    response = new ErrorResponse(errorResponse.Error.Code, errorResponse.Error.Param, errorResponse.Error.Description);
+                    response = Utils.ErrorResponse(result);
                 }
 
                 return response;
@@ -90,7 +88,7 @@ namespace HIPHttpApi
 		{
 			try
 			{
-                string result = _client.Get(new Uri(LoggingEndPoint.Subscribe(include, filter, duration, includeTimeOffset), UriKind.Relative));
+                string result = _client.Get(new Uri(LoggingEndpoint.Subscribe(include, filter, duration, includeTimeOffset), UriKind.Relative));
                 SubscribeJson subscribeResponse = JsonConvert.DeserializeObject<SubscribeJson>(result);
 
                 IResponse response = null;
@@ -101,8 +99,7 @@ namespace HIPHttpApi
                 }
                 else
                 {
-                    ErrorResponseJson errorResponse = JsonConvert.DeserializeObject<ErrorResponseJson>(result);
-                    response = new ErrorResponse(errorResponse.Error.Code, errorResponse.Error.Param, errorResponse.Error.Description);
+                    response = Utils.ErrorResponse(result);
                 }
 
                 return response;
@@ -117,7 +114,7 @@ namespace HIPHttpApi
 		{	
 			try
 			{
-                string result = _client.Get(new Uri(LoggingEndPoint.Unsubscribe(id), UriKind.Relative));
+                string result = _client.Get(new Uri(LoggingEndpoint.Unsubscribe(id), UriKind.Relative));
                 UnsubscribeJson unsubscribeResponse = JsonConvert.DeserializeObject<UnsubscribeJson>(result);
 
                 IResponse response = null;
@@ -128,8 +125,7 @@ namespace HIPHttpApi
                 }
                 else
                 {
-                    ErrorResponseJson errorResponse = JsonConvert.DeserializeObject<ErrorResponseJson>(result);
-                    response = new ErrorResponse(errorResponse.Error.Code, errorResponse.Error.Param, errorResponse.Error.Description);
+                    response = Utils.ErrorResponse(result);
                 }
 
                 return response;

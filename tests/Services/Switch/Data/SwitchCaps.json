@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "result": {
+    "switches": [
+      {
+        "switch": 1,
+        "enabled": true,
+        "mode": "monostable",
+        "switchOnDuration": 5,
+        "type": "normal"
+      },
+      {
+        "switch": 2,
+        "enabled": true,
+        "mode": "monostable",
+        "switchOnDuration": 5,
+        "type": "normal"
+      }
+    ]
+  }
+}

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HIPHttpApi
 {
-	internal class LoggingEndPoint
+	internal class LoggingEndpoint
 	{
 		public static string Caps()
         {

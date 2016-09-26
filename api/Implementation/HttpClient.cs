@@ -43,6 +43,31 @@ namespace HIPHttpApi
             }
         }
 
+        public byte[] GetBytes(Uri endpoint)
+        {
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(_baseAddress, endpoint));
+                req.ContentType = "application/json";
+                req.Method = "GET";
+                req.Timeout = _configuration.Timeout;
+
+                if (_configuration.NetworCredential != null)
+                    req.Credentials = _configuration.NetworCredential;
+
+                WebResponse response = req.GetResponse();
+                Stream str = response.GetResponseStream();
+                byte[] buffer = new byte[str.Length];
+                str.Read(buffer, 0, buffer.Length);
+                response.Close();
+                return buffer;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public string Post(Uri endpoint, string payload)
         {
 			try
@@ -98,6 +123,33 @@ namespace HIPHttpApi
 				throw;
 			}
 		}
+
+        public string Put(Uri endpoint, byte[] data)
+        {
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(new Uri(_baseAddress, endpoint));
+                req.ContentType = "application/json";
+                req.Method = "PUT";
+                req.Timeout = _configuration.Timeout;
+
+                if (_configuration.NetworCredential != null)
+                    req.Credentials = _configuration.NetworCredential;
+
+                if (data != null)
+                {
+                    Stream s = req.GetRequestStream();
+                    s.Write(data, 0, data.Length);
+                    s.Close();
+                }
+
+                return GetResponse(req.GetResponse());
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         public string Delete(Uri endpoint, string payload)
         {

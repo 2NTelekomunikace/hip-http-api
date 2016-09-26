@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "result": {
+    "switches": [
+      {
+        "switch": 1,
+        "active": false
+      },
+      {
+        "switch": 2,
+        "active": false
+      },
+      {
+        "switch": 3,
+        "active": false
+      }
+    ]
+  }
+}

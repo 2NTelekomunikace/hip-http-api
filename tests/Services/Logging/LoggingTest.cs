@@ -7,19 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using Moq;
 
 namespace HIPHttpApiTest
 {
     public class LoggingTest
     {
         private readonly ITestOutputHelper _output;
-
-        uint subId = 0;
-
-        string ipAddr = AppConfiguration.HipAddress;
-        ushort port = AppConfiguration.HipPort;
-        NetworkCredential credent = AppConfiguration.HipNetworkCredential;
-        int timeout = AppConfiguration.HipTimeout;
 
         public LoggingTest(ITestOutputHelper output)
         {
@@ -30,15 +24,10 @@ namespace HIPHttpApiTest
         public void CapsTest()
         {
             //client
-            var httpClient = new HttpClient(new HttpClientConfiguration()
-            {
-                Address = IPAddress.Parse(ipAddr),
-                Port = port,
-                NetworCredential = credent,
-                Timeout = timeout
-            });
+            var httpClient = new Mock<IHttpClient>(MockBehavior.Strict);
+            httpClient.Setup(x => x.Get(It.IsAny<Uri>())).Returns(Encoding.UTF8.GetString(Properties.Resources.Caps));
             //service
-            var logging = new LoggingService(httpClient);
+            var logging = new LoggingService(httpClient.Object);
             //api
             var api = new HIPApi(logging: logging);
             //do job
@@ -60,40 +49,22 @@ namespace HIPHttpApiTest
         public void SubscribeTest()
         {
             //client
-            var httpClient = new HttpClient(new HttpClientConfiguration()
-            {
-                Address = IPAddress.Parse(ipAddr),
-                Port = port,
-                NetworCredential = credent,
-                Timeout = timeout
-            });
+            var httpClient = new Mock<IHttpClient>(MockBehavior.Strict);
+            httpClient.Setup(x => x.Get(It.IsAny<Uri>())).Returns(Encoding.UTF8.GetString(Properties.Resources.Subscribe));
             //service
-            var logging = new LoggingService(httpClient);
+            var logging = new LoggingService(httpClient.Object);
             //api
             var api = new HIPApi(logging: logging);
             //do job
-            var subRsp = api.Logging.Subscribe();
-            if (subRsp.Success)
+            var response = api.Logging.Subscribe();
+            if (response.Success)
             {
-                var resp = (LoggingSubscribeResponse)subRsp;
-                subId = resp.Id;
+                var resp = (LoggingSubscribeResponse)response;
+                Assert.Equal<uint>(2121013117, resp.Id);
             }
             else
             {
-                var resp = (ErrorResponse)subRsp;
-                _output.WriteLine(resp.Description);
-                Assert.True(false);
-            }
-
-            var unsubRsp = api.Logging.Unsubscribe(subId);
-            if (unsubRsp.Success)
-            {
-                var resp = (LoggingUnsubscribeResponse)unsubRsp;
-                Assert.True(true);
-            }
-            else
-            {
-                var resp = (ErrorResponse)unsubRsp;
+                var resp = (ErrorResponse)response;
                 _output.WriteLine(resp.Description);
                 Assert.True(false);
             }
@@ -103,74 +74,47 @@ namespace HIPHttpApiTest
         public void UnsubscribeTest()
         {
             //client
-            var httpClient = new HttpClient(new HttpClientConfiguration()
-            {
-                Address = IPAddress.Parse(ipAddr),
-                Port = port,
-                NetworCredential = credent,
-                Timeout = timeout
-            });
+            var httpClient = new Mock<IHttpClient>(MockBehavior.Strict);
+            httpClient.Setup(x => x.Get(It.IsAny<Uri>())).Returns(Encoding.UTF8.GetString(Properties.Resources.Success));
             //service
-            var logging = new LoggingService(httpClient);
+            var logging = new LoggingService(httpClient.Object);
             //api
             var api = new HIPApi(logging: logging);
             //do job
-            api.Logging.Subscribe();
-            api.Logging.Unsubscribe(subId);
+            var response = api.Logging.Unsubscribe(123);
+            if (response.Success)
+            {
+                Assert.IsType<LoggingUnsubscribeResponse>(response);
+            }
+            else
+            {
+                var resp = (ErrorResponse)response;
+                _output.WriteLine(resp.Description);
+                Assert.True(false);
+            }
         }
 
         [Fact]
         public void PullTest()
         {
             //client
-            var httpClient = new HttpClient(new HttpClientConfiguration()
-            {
-                Address = IPAddress.Parse(ipAddr),
-                Port = port,
-                NetworCredential = credent,
-                Timeout = timeout
-            });
+            var httpClient = new Mock<IHttpClient>(MockBehavior.Strict);
+            httpClient.Setup(x => x.Get(It.IsAny<Uri>())).Returns(Encoding.UTF8.GetString(Properties.Resources.Pull));
             //service
-            var logging = new LoggingService(httpClient);
+            var logging = new LoggingService(httpClient.Object);
             //api
             var api = new HIPApi(logging: logging);
             //do job
-            var subRsp = api.Logging.Subscribe();
-            if (subRsp.Success)
+            var response = api.Logging.Pull(123);
+            if (response.Success)
             {
-                var resp = (LoggingSubscribeResponse)subRsp;
-                subId = resp.Id;
-            }
-            else
-            {
-                var resp = (ErrorResponse)subRsp;
-                _output.WriteLine(resp.Description);
-                Assert.True(false);
-            }
-
-            var pullRsp = api.Logging.Pull(subId);
-            if (pullRsp.Success)
-            {
-                var resp = (LoggingPullResponse)pullRsp;
+                var resp = (LoggingPullResponse)response;
                 var events = resp.Events;
-                Assert.True(true);
+                Assert.True(events.Any());
             }
             else
             {
-                var resp = (ErrorResponse)pullRsp;
-                _output.WriteLine(resp.Description);
-                Assert.True(false);
-            }
-
-            var unsubRsp = api.Logging.Unsubscribe(subId);
-            if (unsubRsp.Success)
-            {
-                var resp = (LoggingUnsubscribeResponse)unsubRsp;
-                Assert.True(true);
-            }
-            else
-            {
-                var resp = (ErrorResponse)unsubRsp;
+                var resp = (ErrorResponse)response;
                 _output.WriteLine(resp.Description);
                 Assert.True(false);
             }

@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "result": {
+    "jpegResolution": [
+      {
+        "width": 160,
+        "height": 120
+      },
+      {
+        "width": 176,
+        "height": 144
+      },
+      {
+        "width": 320,
+        "height": 240
+      },
+      {
+        "width": 352,
+        "height": 272
+      },
+      {
+        "width": 352,
+        "height": 288
+      },
+      {
+        "width": 640,
+        "height": 480
+      }
+    ],
+    "sources": [
+      {
+        "source": "internal"
+      },
+      {
+        "source": "external"
+      }
+    ]
+  }
+}

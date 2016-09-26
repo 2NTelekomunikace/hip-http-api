@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "result": {
+    "ports": [
+      {
+        "port": "relay1",
+        "state": 0
+      },
+      {
+        "port": "relay2",
+        "state": 0
+      }
+    ]
+  }
+}
